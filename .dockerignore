@@ -1,0 +1,9 @@
+node_modules
+.next
+npm-debug.log
+.env.local
+.env.*
+/.git
+/.github
+public/images
+data/*.json

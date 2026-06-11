@@ -1,0 +1,188 @@
+[
+  {
+    "id": "1",
+    "title": "Hand-held Mini Printer",
+    "price": 450,
+    "image": "/images/hhpi.jpg",
+     "images": [
+    "/images/hhpi.jpg",
+    "/images/hhpii.jpg",
+    "/images/hhpiii.jpg"
+     ],
+    "sku": "MPR-01",
+    "category": "Printers",
+    "description": "Compact hand-held printer for on-demand marking and labeling in tight spaces."
+  },
+  {
+    "id": "2",
+    "title": "Automatic Laser Coding Machine",
+    "price": 7800,
+    "image": "/images/alcmi.jpg",
+    "images": [
+      "/images/alcmi.jpg",
+      "/images/alcmii.jpg"
+    ],
+    "sku": "LCM-02",
+    "category": "Coding Machines",
+    "description": "Fully automatic laser coder for high-speed date, batch, and serial number marking."
+  },
+  {
+    "id": "3",
+    "title": "40 Ton Bailing Machine",
+    "price": 16800,
+    "image": "/images/40tbmi.jpg",
+    "images": [
+      "/images/40tbmi.jpg",
+      "/images/40tbmii.webp",
+      "/images/40tbmiii.jpg",
+      "/images/40tbmiv.jpg"
+    ],
+    "sku": "BM-40T",
+    "category": "Bailing Machines",
+    "description": "Robust 40-ton baling press designed for waste and recycling compression."
+  },
+  {
+    "id": "4",
+    "title": "Powder Packaging Machine",
+    "price": 13200,
+    "image": "/images/ppmi.jpg",
+    "images": [
+      "/images/ppmi.jpg",
+      "/images/ppmii.jpg",
+      "/images/ppmiii.jpg"
+    ],
+    "sku": "PPM-04",
+    "category": "Packaging Machines",
+    "description": "Precision powder packaging machine for sachets, pouches, and bags."
+  },
+  {
+    "id": "5",
+    "title": "Double-head Piston Liquid Filling Machine",
+    "price": 15400,
+    "image": "/images/dhplfmi.webp",
+    "images": [
+      "/images/dhplfmi.webp",
+      "/images/dhplfmii.webp",
+      "/images/dhplfmiii.webp"
+    ],
+    "sku": "DPLF-05",
+    "category": "Filling Machines",
+    "description": "High-accuracy double-head piston filler built for liquid products and chemicals."
+  },
+  {
+    "id": "6",
+    "title": "Nylon Cutting Machine",
+    "price": 9200,
+    "image": "/images/ncmi.jpg",
+    "images": [
+      "/images/ncmi.jpg",
+      "/images/ncmii.jpg",
+      "/images/ncmiii.jpg"
+    ],
+    "sku": "NCM-06",
+    "category": "Cutting Machines",
+    "description": "Nylon cutting machine engineered for clean, consistent trimming and shaping."
+  },
+  {
+    "id": "7",
+    "title": "Grinding Machine",
+    "price": 10400,
+    "image": "/images/grinding-machine.jpg",
+    "images": [
+      "/images/grinding-machine.jpg"
+    ],
+    "sku": "GM-07",
+    "category": "Grinding Machines",
+    "description": "Precision grinding machine for surface finishing and material removal."
+  },
+{
+    "id": "8",
+    "title": "Shrink Wrapping Machine",
+    "price": 10400,
+    "image": "/images/shrink-wrapping-machine.jpg",
+    "images": [
+      "/images/shrink-wrapping-machine.jpg"
+    ],
+    "sku": "SWM-08",
+    "category": "Wrapping Machines",
+    "description": "Efficient shrink wrapping machine for secure product packaging."
+  },
+  {
+    "id": "9",
+    "title": "Band Sealing Machine",
+    "price": 10400,
+    "image": "/images/band-sealing-machine.jpg",
+    "images": [
+      "/images/band-sealing-machine.jpg"
+    ],
+    "sku": "BSM-07",
+    "category": "Sealing Machines",
+    "description": "Efficient band sealing machine for sealing of nylon and plastic bags."
+  },
+  {
+    "id": "10",
+    "title": "Pure Water Filling Machine",
+    "price": 10400,
+    "image": "/images/pure-water-filler.jpg",
+    "images": [
+      "/images/pure-water-filler.jpg"
+    ],
+    "sku": "PWF-09",
+    "category": "Filling Machines",
+    "description": "High-precision pure water filling machine for production and packaging of sachet water."
+  },
+  {
+    "id": "11",
+    "title": "Stainless treatment tanks",
+    "price": 10400,
+    "image": "/images/stainless-tanks.jpg",
+    "sku": "ST-10",
+    "category": "Treatment Equipment",
+    "description": "Durable stainless steel treatment tanks for treatment of water."
+  },
+  {
+    "id": "12",
+    "title": "Mixing Machine",
+    "price": 10400,
+    "image": "/images/mixing-machine.jpg",
+    "sku": "MM-07",
+    "category": "Mixing Equipment",
+    "description": "High-efficiency mixing machine for uniform blending of powdered substances."
+  },
+  {
+    "id": "13",
+    "title": "Labeling Machine",
+    "price": 10400,
+    "image": "/images/labeling-machine.jpg",
+    "sku": "LM-07",
+    "category": "Labeling Equipment",
+    "description": "High-efficiency labeling machine for accurate and consistent product labeling."
+  },
+  {
+    "id": "14",
+    "title": "Extruder Machine",
+    "price": 10400,
+    "image": "/images/extruder-machine.jpg",
+    "sku": "EM-07",
+    "category": "Extrusion Equipment",
+    "description": "High-efficiency extruder machine for plastic and rubber production."
+  },
+  {
+    "id": "15",
+    "title": "industrial water heater tanks",
+    "price": 10400,
+    "image": "/images/water-heater-tanks.jpg",
+    "sku": "WHT-07",
+    "category": "Heating Equipment",
+    "description": "Durable industrial water heater tanks for efficient water heating and storage."
+  },
+  {
+    "id": "16",
+    "title": "Semi auto liquid filling machine",
+    "price": 10400,
+    "image": "/images/semi-auto-filler.jpg",
+    "sku": "SAF-07",
+    "category": "Filling Machines",
+    "description": "Semi-automatic liquid filling machine for efficient and accurate filling of bottles and containers."
+  }
+]
