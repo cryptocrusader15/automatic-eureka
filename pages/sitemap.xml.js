@@ -1,18 +1,10 @@
-import fs from 'fs'
-import path from 'path'
+import { getProducts } from '../lib/productStore'
 
 export async function getServerSideProps({ res }) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   const pages = ['/', '/products', '/about', '/contact']
 
-  const dataFile = path.join(process.cwd(), 'data', 'products.json')
-  let products = []
-  try {
-    const raw = fs.readFileSync(dataFile, 'utf8')
-    products = JSON.parse(raw)
-  } catch (e) {
-    // ignore
-  }
+  const products = await getProducts()
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

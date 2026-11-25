@@ -4,11 +4,11 @@
     "title": "Hand-held Mini Printer",
     "price": 450,
     "image": "/images/hhpi.jpg",
-     "images": [
-    "/images/hhpi.jpg",
-    "/images/hhpii.jpg",
-    "/images/hhpiii.jpg"
-     ],
+    "images": [
+      "/images/hhpi.jpg",
+      "/images/hhpii.jpg",
+      "/images/hhpiii.jpg"
+    ],
     "sku": "MPR-01",
     "category": "Printers",
     "description": "Compact hand-held printer for on-demand marking and labeling in tight spaces."
@@ -95,7 +95,7 @@
     "category": "Grinding Machines",
     "description": "Precision grinding machine for surface finishing and material removal."
   },
-{
+  {
     "id": "8",
     "title": "Shrink Wrapping Machine",
     "price": 10400,
@@ -184,5 +184,14 @@
     "sku": "SAF-07",
     "category": "Filling Machines",
     "description": "Semi-automatic liquid filling machine for efficient and accurate filling of bottles and containers."
+  },
+  {
+    "title": "uniport logo",
+    "price": 50000,
+    "sku": "UL-01",
+    "category": "picture",
+    "image": "/images/uniport_logo.png",
+    "description": "logo for websites",
+    "id": "1795616534591"
   }
 ]

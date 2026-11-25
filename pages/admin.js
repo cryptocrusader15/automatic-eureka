@@ -2,12 +2,26 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { formatNaira } from '../lib/formatCurrency'
 
+async function postProductAction(payload) {
+  const response = await fetch('/api/products', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  const body = await response.json()
+  if (!response.ok || body.ok !== true) {
+    throw new Error(body.error || 'Product update failed')
+  }
+  return body
+}
+
 export default function Admin() {
   const router = useRouter()
   const [products, setProducts] = useState([])
   const [form, setForm] = useState({ title: '', price: '', sku: '', category: '', image: '', images: '', description: '' })
   const [uploading, setUploading] = useState(false)
   const [statusMessage, setStatusMessage] = useState('')
+  const [statusError, setStatusError] = useState(false)
   const [authorized, setAuthorized] = useState(false)
 
   useEffect(() => {
@@ -33,8 +47,16 @@ export default function Admin() {
     }
   }
 
-  function refresh() {
-    fetch('/api/products').then((r) => r.json()).then(setProducts)
+  async function refresh() {
+    const response = await fetch('/api/products')
+    if (!response.ok) throw new Error('Failed to refresh products')
+    setProducts(await response.json())
+  }
+
+  function showStatus(message, isError = false) {
+    setStatusMessage(message)
+    setStatusError(isError)
+    setTimeout(() => setStatusMessage(''), 4000)
   }
 
   async function addProduct(e) {
@@ -51,16 +73,13 @@ export default function Admin() {
       image: form.image || images[0] || ''
     }
 
-    const res = await fetch('/api/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'add', product }) })
-    const body = await res.json()
-    if (body.ok !== false) {
+    try {
+      await postProductAction({ action: 'add', product })
+      await refresh()
       setForm({ title: '', price: '', sku: '', category: '', image: '', images: '', description: '' })
-      setStatusMessage(`Product added: ${product.title}`)
-      refresh()
-      setTimeout(() => setStatusMessage(''), 4000)
-    } else {
-      setStatusMessage('Failed to add product. Please try again.')
-      setTimeout(() => setStatusMessage(''), 4000)
+      showStatus(`Product added: ${product.title}`)
+    } catch (error) {
+      showStatus(error.message || 'Failed to add product', true)
     }
   }
 
@@ -75,12 +94,20 @@ export default function Admin() {
   }
 
   async function replaceProducts(jsonText) {
+    let parsed
     try {
-      const parsed = JSON.parse(jsonText)
-      await fetch('/api/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'replace', products: parsed }) })
-      refresh()
-    } catch (e) {
+      parsed = JSON.parse(jsonText)
+    } catch {
       alert('Invalid JSON')
+      return
+    }
+
+    try {
+      await postProductAction({ action: 'replace', products: parsed })
+      await refresh()
+      showStatus('Product list replaced')
+    } catch (error) {
+      showStatus(error.message || 'Failed to replace products', true)
     }
   }
 
@@ -103,7 +130,7 @@ export default function Admin() {
         <section className="bg-white p-6 rounded shadow">
           <h2 className="text-xl font-bold mb-3">Add Product</h2>
           <p className="text-sm text-gray-600 mb-4">Use this form to add products without editing `data/products.json` directly.</p>
-          {statusMessage && <div className="mb-3 p-3 rounded bg-green-100 text-green-800">{statusMessage}</div>}
+          {statusMessage && <div className={`mb-3 p-3 rounded ${statusError ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>{statusMessage}</div>}
           <form onSubmit={addProduct}>
             <input className="w-full mb-2 border px-3 py-2" placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
             <input type="number" step="0.01" className="w-full mb-2 border px-3 py-2" placeholder="Price" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} required />
@@ -183,19 +210,24 @@ export default function Admin() {
               if (!file) return
               const reader = new FileReader()
               reader.onload = async () => {
-                const text = reader.result
-                const lines = text.split(/\r?\n/).filter(Boolean)
-                if (lines.length < 2) { alert('CSV has no data'); return }
-                const headers = lines[0].split(',').map(h => h.trim())
-                const rows = lines.slice(1).map(line => {
-                  const cols = line.split(',')
-                  const obj = {}
-                  headers.forEach((h, i) => { obj[h] = cols[i] ? cols[i].trim() : '' })
-                  if (obj.price) obj.price = Number(obj.price)
-                  return obj
-                })
-                await fetch('/api/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'replace', products: rows }) })
-                refresh()
+                try {
+                  const text = String(reader.result || '')
+                  const lines = text.split(/\r?\n/).filter(Boolean)
+                  if (lines.length < 2) { alert('CSV has no data'); return }
+                  const headers = lines[0].split(',').map(h => h.trim())
+                  const rows = lines.slice(1).map(line => {
+                    const cols = line.split(',')
+                    const obj = {}
+                    headers.forEach((h, i) => { obj[h] = cols[i] ? cols[i].trim() : '' })
+                    if (obj.price) obj.price = Number(obj.price)
+                    return obj
+                  })
+                  await postProductAction({ action: 'replace', products: rows })
+                  await refresh()
+                  showStatus(`Imported ${rows.length} products`)
+                } catch (error) {
+                  showStatus(error.message || 'Failed to import products', true)
+                }
               }
               reader.readAsText(file)
             }} />
