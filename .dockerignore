@@ -2,7 +2,7 @@ node_modules
 .next
 npm-debug.log
 .env.local
-.env.*
+.env
 /.git
 /.github
-*.json
+
