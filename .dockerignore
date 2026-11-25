@@ -5,5 +5,4 @@ npm-debug.log
 .env.*
 /.git
 /.github
-public/images
-data/*.json
+*.json
